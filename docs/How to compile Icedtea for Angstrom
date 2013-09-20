@@ -1,0 +1,124 @@
+How to compile Icedtea for Angstrom -
+     The Angstrom Operating system is designed for embedded devices. So most of its libraries are different from desktop kind of operating systems like Ubuntu, Fedora, etc. So its not possible to compile Icedtea for Angstrom directly. Openembedded is the solution for this. 
+Openembedded[1] is the software framework whose build system is based on Bitbake recipies. The bitbake recipies and patches are available for only icedtea-6[2]. 
+
+Steps to compile icedtea-6 on ubuntu system:
+
+1) Install required packages
+	sudo apt-get install git python-ply python-progressbar texi2html cvs subversion gawk chrpath texinfo
+
+2) On Ubuntu you will need to change /bin/sh to point to bash instead of dash, you can do this by running the following command and answer "No" if you want to use dash in the question box that gets displayed.
+	sudo dpkg-reconfigure dash
+
+3)download openembedded:
+	mkdir /usr/src/openembedde
+	cd /usr/src/openembedded
+	wget http://download.berlios.de/bitbake/bitbake-1.12.0.tar.gz
+	tar zxvf bitbake-1.12.0.tar.gz
+	git clone git://git.openembedded.org/openembedded org.openembedded.dev
+
+4) Create your build directory:
+	mkdir build
+	mkdir build/conf
+
+5) Create your own local.conf
+
+vi build/conf/local.conf -->
+# look in org.openembedded.dev/conf/distro
+# for various preconfigured distro targets.
+DISTRO = "angstrom-2010.x"
+
+# look in org.openembedded.dev/conf/machine 
+# for various preconfigured machine targets.
+# If you want to build packages for the same architecture
+# as bitbake are running on then change this to MACHINE = "native"
+MACHINE = "beagleboard"
+
+# Comment out *one* of the two lines below
+#DISTRO_TYPE = "debug"
+DISTRO_TYPE = "release"
+
+#This row instructs bitbake to both create jffs2 compressed filesystems for embedded flash disks
+#and tar.gz tarballs to be unpacked on removable compact flash sd cards.
+IMAGE_FSTYPES = "jffs2 tar.gz "
+
+#
+# The default build uses glibc
+# Uncomment the line below if you want uclibc instead of glibc
+# be prepared for a lot of package breakage!
+# 'uclibc' or 'glibc' or 'eglibc'
+ANGSTROMLIBC = "glibc"
+
+#
+# If you enable glibc and encounter qemu-native build issues
+# uncomment the line below.
+ENABLE_BINARY_LOCALE_GENERATION=0
+
+# specifies where BitBake should place the downloaded sources
+DL_DIR = "${OETOP}/sources"
+
+# specifies where BitBake should create its temporary files
+TMPDIR = ${OETOP}/${MYBUILDDIR}/tmp
+
+# specifies that BitBake should emit the log if a build fails
+BBINCLUDELOGS = "yes"
+
+# collection setup
+BBFILES="${OEBRANCH}/recipes/*/*.bb ${USERBRANCH}/packages/*/*.bb"
+
+BBFILE_COLLECTIONS="oe user" 
+
+BBFILE_PATTERN_oe="^${OEBRANCH}/packages"
+BBFILE_PATTERN_user="^${USERBRANCH}/packages"
+
+BBFILE_PRIORITY_oe="5"
+BBFILE_PRIORITY_user="15"
+
+# Uncomment these lines to enable parallel make.
+# This allows make to spawn mutliple processes to take advantage of multiple
+# processors. Useful on SMP machines
+PARALLEL_MAKE = "-j 4"
+BB_NUMBER_THREADS = "4"
+
+# some of the OE provided native tools are a bit buggy
+# uncomment the line below if you run into build failures due to the packages listed below
+# you will also need to install your distro's version of these packages on your build machine
+#ASSUME_PROVIDED += "gdk-pixbuf-csource-native imagemagick-native librsvg-native
+
+6) vi run.sh -->
+
+#
+# Environment setup for oe
+#
+export MYBUILDDIR="build"
+
+export BB_ENV_EXTRAWHITE="MACHINE DISTRO ANGSTROM_MODE OETOP OEBRANCH USERBRANCH MYBUILDDIR"
+
+export OETOP="/usr/src/openembedded"
+export OEBRANCH="${OETOP}/org.openembedded.dev"
+export USERBRANCH="${OETOP}/user.collection"
+
+export PATH="${OETOP}/bitbake-1.12.0/bin/:$PATH"
+export BBPATH="${OETOP}/${MYBUILDDIR}:${USERBRANCH}:${OEBRANCH}"
+
+umask 0002
+bash
+#
+# end oe setup
+#
+
+7) setup system properties
+	chmod +x run.sh
+	./run.sh
+ 
+8) compile openjdk-6
+	bitbake openjdk-6
+
+After it completes you will get following message: 
+"... NOTE: Running task 2661 of 2661 (ID: 9, /usr/src/openembedded/org.openembedded.dev/recipes/openjdk/openjdk-6_6b18-1.8.5.bb, do_build) NOTE: package openjdk-6-jre-6b18-1.8.5-r11.1: task do_build: Started NOTE: package openjdk-6-jre-6b18-1.8.5-r11.1: task do_build: Succeeded NOTE: Tasks Summary: Attempted 2661 tasks of which 0 didn't need to be rerun and 0 failed."
+
+You can find your created packages and image files in /usr/src/openembedded/build/tmp/deploy
+You can find the compiled binarys used to make the packages in the /usr/src/openembedded/build/tmp/work/arch/openjdk-6-* directory.
+
+[1] https://en.wikipedia.org/wiki/OpenEmbedded 
+[2] http://cgit.openembedded.org/cgit.cgi/openembedded/tree/recipes/openjdk

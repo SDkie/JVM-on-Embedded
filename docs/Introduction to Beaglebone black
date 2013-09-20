@@ -1,0 +1,28 @@
+Introduction to Beaglebone Black:
+
+I have used beaglebone black[1] for 'JRuby on Embedded' project. 
+
+Its configuration:
+- 512MB DDR3 RAM
+- 2GB 8-bit eMMC on-board flash storage
+- 3D graphics accelerator
+- NEON floating-point accelerator
+- 2x PRU 32-bit microcontrollers
+- Processor: AM335x 1GHz ARM® Cortex-A8
+
+Supporting operating system:
+- Angstrom
+- Ubuntu
+- Debian
+- Android
+
+Lot of material about it can be get on community[2] website. I have to share few of my experience with it.
+- Borad can't get brick as you can anytime flash the Sdcard and boot the hardware again when you messed up with its operating system
+- The support of the community is prity good
+- Board comes with excilient tools like CloudIDE, 
+- The board is very cheap.
+- You can use USB to add external input device or storage device.( I used 8GB pendrive with it)
+- 512MB RAM and 1GHz processor make it really an powerfull embedded device
+
+[1] http://beagleboard.org/Products/BeagleBone%20Black
+[2] http://beagleboard.org

@@ -1,0 +1,10 @@
+Report:      SPECjvm2008 Base summary
+Result:      Noncompliant composite result: 0.06 ops/m
+HW Model:    n/a, n/a
+HW CPU:      n/a, n/a
+OS:          Linux
+JVM:         Sun Microsystems Inc., OpenJDK Zero VM, 20.0-b12 mixed mode
+JVM tuning:  n/a
+JVM startup:  
+Tester:      root, n/a
+Run date:    Sat Jan 01 00:39:36 UTC 2000

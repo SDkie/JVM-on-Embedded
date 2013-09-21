@@ -1,0 +1,10 @@
+Report:      SPECjvm2008 Base summary
+Result:      Noncompliant composite result: 0.19 ops/m
+HW Model:    n/a, n/a
+HW CPU:      n/a, n/a
+OS:          Linux
+JVM:         Robert Lougher, JamVM, 1.6.0-devel inline-threaded interpreter with stack-caching
+JVM tuning:  n/a
+JVM startup:  
+Tester:      root, n/a
+Run date:    Sat Jan 01 02:01:30 UTC 2000

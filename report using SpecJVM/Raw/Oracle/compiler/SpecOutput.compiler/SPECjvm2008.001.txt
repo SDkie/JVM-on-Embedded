@@ -1,0 +1,80 @@
+================================
+SPECjvm2008 Base
+================================
+n/a n/a
+Oracle Corporation Java HotSpot(TM) Embedded Client VM
+Tested by: n/a Test date: Sat Jan 01 03:12:23 UTC 2000
+Run is valid, but not compliant
+
+================================
+compiler                      5.55                                    
+Noncompliant composite result: 5.55 ops/m
+================================
+
+
+Submitter                     n/a                                     
+Submitter URL                 n/a                                     
+SPEC license                  n/a                                     
+Tester                        root                                    
+Location                      n/a                                     
+Test date:                    Sat Jan 01 03:12:23 UTC 2000            
+OS name                       Linux                                   
+OS available                  n/a                                     
+OS address bits               n/a                                     
+OS tuning                                                             
+Filesystem                    n/a                                     
+Other s/w name                                                        
+Other s/w tuning                                                      
+Other s/w available                                                   
+Vendor                        Oracle Corporation                      
+Vendor URL                    http://java.oracle.com/                 
+JVM name                      Java HotSpot(TM) Embedded Client VM     
+JVM version                   23.21-b01 mixed mode                    
+JVM available                 n/a                                     
+Java Specification            1.7                                     
+JVM address bits              32                                      
+JVM initial heap memory       n/a                                     
+JVM maximum heap memory       n/a                                     
+JVM command line              n/a                                     
+JVM command line startup                                              
+JVM launcher startup          default                                 
+Additional JVM tuning                                                 
+JVM class path                SPECjvm2008.jar                         
+JVM boot class path           /home/root/Desktop/ejre1.7.0_21/lib/resources.jar:/home/root/Desktop/ejre1.7.0_21/lib/rt.jar:/home/root/Desktop/ejre1.7.0_21/lib/sunrsasign.jar:/home/root/Desktop/ejre1.7.0_21/lib/jsse.jar:/home/root/Desktop/ejre1.7.0_21/lib/jce.jar:/home/root/Desktop/ejre1.7.0_21/lib/charsets.jar:/home/root/Desktop/ejre1.7.0_21/lib/jfr.jar:/home/root/Desktop/ejre1.7.0_21/classes
+HW vendor                     n/a                                     
+HW vendor's URL               n/a                                     
+HW model                      n/a                                     
+HW available                  n/a                                     
+CPU vendor                    n/a                                     
+CPU vendor's URL              n/a                                     
+CPU name                      n/a                                     
+CPU frequency                 n/a                                     
+# of logical cpus             n/a                                     
+# of chips                    n/a                                     
+# of cores                    n/a                                     
+Cores per chip                n/a                                     
+Threads per core              n/a                                     
+Threading enabled             n/a                                     
+HW address bits               n/a                                     
+Primary cache                 n/a                                     
+Secondary cache               n/a                                     
+Other cache                   n/a                                     
+Memory size                   n/a                                     
+Memory details                n/a                                     
+Other HW details              n/a                                     
+
+Not a compliant sequence of benchmarks for publication.
+Property specjvm.run.checksum.validation must be true for publication.
+
+Details of Runs
+---------------
+PASSED
+
+Benchmark                     Iteration      Expected(ms)   Actual(ms)     Operations     ops/m          
+---------------------------------------------------------------------------------------------------
+
+compiler.compiler             warmup         120000         120000         10.32          5.16           
+compiler.compiler             iteration 1    240000         240000         22.20          5.55           
+
+SPECjvm2008 Version: [SPECjvm2008 1.01 (20090519)]
+Copyright (C) 2008 SPEC. All rights reserved

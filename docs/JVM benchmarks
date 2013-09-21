@@ -1,0 +1,10 @@
+	We have lot of JVM in market having different implementations. We need figures to select the one which will be best for us. I find following benchmarking options 
+
+1) http://www.spec.org/jvm2008/
+2) http://www.dacapobench.org/
+3) http://code.google.com/p/jvmtop/
+
+	I found SpecJVM useful for me. It had a variety benchmark options and to compare the JVMs which are 
+"startup.helloworld startup.compiler.compiler startup.compiler.sunflow startup.compress startup.crypto.aes startup.crypto.rsa startup.crypto.signverify startup.mpegaudio startup.scimark.fftstartup.scimark.lu startup.scimark.monte_carlo startup.scimark.sor startup.scimark.sparse startup.serial startup.sunflow startup.xml.transform startup.xml.validation compiler.compiler compiler.sunflow compress crypto.aes crypto.rsa crypto.signverify derby mpegaudio scimark.fft.large scimark.lu.large scimark.sor.large scimark.sparse.large scimark.fft.small scimark.lu.small scimark.sor.small scimark.sparse.small scimark.monte_carlo serial sunflow xml.transform xml.validation"
+
+While executing the bechmark I have log the CPU usage, Mem usage and total execution time. After that I have ploted those results in graph using gnuplot

@@ -1,0 +1,8 @@
+Bug with Icedtea OpenJDK with JRuby-
+    Icedtea provides OpenJDK to run it with different JVM like ZeroVM, JamVM, cacaoVM, etc. These JVMs are able to run the Java properly( I have tested it with SpecJVM benchmark and not with unit test). But when I try to run JRuby using this JVM then the encoding of it seams to be broken with JRuby version 1.6.8.1 and further. Its behavious seams very Odd. If you need this fixed then you have to contact Icedtea developers they only can help you.
+
+I have tested changing the encoding using :
+LANG=en_US.UTF-8
+JAVA_OPTS=-Dfile.encoding=utf-8
+
+but it didnt helped :(.

@@ -1,0 +1,15 @@
+I compiled the Jamvm for GNU classpath on Ubuntu 12.04 Operating system.
+Steps are given below-
+
+ -Download code from here http://sourceforge.net/projects/jamvm/files/ .
+	I downloaded latest (1.5.4) version.
+
+ -./configure 
+	Error:
+		checking for dlopen in -ldl... yes
+		checking for inflate in -lz... no
+		configure: error: zlib is missing
+		zlib library is missing 
+ -sudo apt-get install zlib1g-dev zlibc 
+ -make
+ -make install

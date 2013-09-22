@@ -1,0 +1,59 @@
+Compiling GNU classpath on Ubuntu 12.04 -
+
+
+ -First install JDK in your system. I am using jdk-6u37-linux-x64.
+ -Run ./configure
+		checking for iconv... yes	
+		checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+		checking for X... no
+		configure: error: GTK+ peers requested but no X library available
+
+		GTK+ library missing
+ -apt-get install libgtk2.0-0 libgtk2.0-dev 
+		checking for XRenderQueryExtension in -lXrender... yes
+		checking for XRRQueryExtension in -lXrandr... yes
+		checking for gconf-2.0 >= 2.6.0... Package gconf-2.0 was not found in the pkg-config search path. Perhaps you should add the directory 	
+		containing `gconf-2.0.pc' to the PKG_CONFIG_PATH environment variable No package 'gconf-2.0' found
+		configure: error: Library requirements (gconf-2.0 >= 2.6.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your   libraries are in a nonstandard prefix so pkg-config can find them.
+
+		gconf-2.0 library missing
+ -apt-get install libgconf2-dev 
+
+		checking for MSG_WAITALL... yes
+		checking for mozilla-plugin... checking for firefox-plugin firefox-xpcom... checking for xulrunner-plugin xulrunner-xpcom... checking for 	mozilla-firefox-plugin mozilla-firefox-xpcom... checking for seamonkey-plugin seamonkey-xpcom... checking for iceape-plugin iceape-xpcom... 		configure: error: Couldn't find plugin support headers and libraries, try --disable-plugin
+
+		Disable plugin and run make
+ -./configure  --disable-plugin
+ -make
+		cpnet.c: In function ‘cpnet_addMembership’:
+		cpnet.c:583:32: error: dereferencing type-punned pointer will break strict-aliasing rules [-Werror=strict-aliasing]
+		cpnet.c: In function ‘cpnet_dropMembership’:
+		cpnet.c:598:32: error: dereferencing type-punned pointer will break strict-aliasing rules [-Werror=strict-aliasing]
+		cc1: all warnings being treated as errors
+		make[3]: *** [cpnet.lo] Error 1
+		make[3]: Leaving directory `/home/ubuntu/Desktop/Java/classpath-0.98/native/jni/native-lib'
+		make[2]: *** [all-recursive] Error 1
+		make[2]: Leaving directory `/home/ubuntu/Desktop/Java/classpath-0.98/native/jni'
+		make[1]: *** [all-recursive] Error 1
+		make[1]: Leaving directory `/home/ubuntu/Desktop/Java/classpath-0.98/native'
+		make: *** [all-recursive] Error 1
+
+		Details of error: http://sourceforge.net/projects/jamvm/forums/forum/256481/topic/5047926
+		Disable warning 
+ -./configure  --disable-plugin --disable-Werror
+ -make
+
+		/bin/mkdir -p classes asm 
+		/bin/mkdir -p ../tools/generated/gnu/classpath/tools/gjdoc/expr
+		java -classpath  antlr.Tool -o ../tools/generated/gnu/classpath/tools/gjdoc/expr/ \
+	 		 ./gnu/classpath/tools/gjdoc/expr/java-expression.g
+		Unrecognized option: -o	
+		Could not create the Java virtual machine.
+		make[1]: *** [tools.zip] Error 1
+		make[1]: Leaving directory `/home/ubuntu/Desktop/Java/classpath-0.98/tools'
+
+		http://old.nabble.com/gij%3A-unrecognized-option----%60-o'-td28613551.html
+ -./configure  --disable-plugin --disable-Werror --disable-gjdoc 
+ -make
+ -make install
